@@ -1,0 +1,18 @@
+{
+    "extends": "airbnb",
+    "rules": {
+	    "func-names": ["error", "never"],
+	    "indent": ["error", "tab"],
+		"no-tabs": 0,
+	    "space-before-blocks": "off",
+	    "object-curly-spacing": "off",
+	    "keyword-spacing": "off",
+	    "no-use-before-define": "off",
+		"import/no-extraneous-dependencies": "off",
+	    "import/no-unresolved": "off",
+	    "space-before-function-paren":"off",
+	    "object-curly-newline": "off",
+	    "import/no-dynamic-require": "off",
+	    "no-unused-vars": "off"
+    }
+}
