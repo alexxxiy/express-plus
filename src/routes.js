@@ -1,5 +1,6 @@
 /* eslint global-require: "off" */
 const to = require('await-to-js').to;
+const httpStatus = require('http-status');
 const glob = require('glob');
 const pathModule = require('path');
 const log = require('log')(module);
@@ -22,7 +23,7 @@ class Context {
 
 	end(...args){
 		const body = args && args[0] || {msg: 'empty response'};
-		const status = args && args[1] || 200;
+		const status = args && args[1] || httpStatus.OK;
 
 		this.res.status(status).send(body);
 	}
@@ -42,8 +43,9 @@ function newRoute(location){
 		const context = new Context(request, response, next);
 
 		if(!handler.all){
-			log.e('newRoute_0', 'some error');
-			context.end({error: `Service ${location} not implemented`}, 404);
+		  const msg = `Service ${location} not implemented`;
+			log.e('newRoute_0', msg);
+			context.end({error: msg}, httpStatus.NOT_FOUND);
 			return;
 		}
 

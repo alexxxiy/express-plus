@@ -1,3 +1,4 @@
+const httpStatus = require('http-status');
 const log = require('log')(module);
 
 const CRUD = ['create', 'read', 'update', 'delete'];
@@ -25,14 +26,14 @@ function baseAdminWrite(ctx, rightName){
 
 	// Check rights for create, update, delete
 	if(!loggedIn){
-		ctx.end({error: 'You need to log in'}, 401);
+		ctx.end({error: 'You need to log in'}, httpStatus.UNAUTHORIZED);
 		return true;
 	}
 
 	const hasRight = this.checkRight(rights => (rights[rightName] && rights[rightName].w));
 
 	if(!hasRight){
-		ctx.end({error: 'You do not have permission for this request'}, 403);
+		ctx.end({error: 'You do not have permission for this request'}, httpStatus.FORBIDDEN);
 		return true;
 	}
 };

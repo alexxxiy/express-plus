@@ -1,4 +1,4 @@
 {
 	"url": "redis://127.0.0.1:6379",
-	"pass": "test_password"
+	"_pass": "test_password"
 }
